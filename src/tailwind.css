@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@font-face {
+    font-family: 'Lato';
+    src: url('../public/Lato-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Arvo';
+    src: url('../public/Arvo-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Masque';
+    src: url('../public/MASQUE__.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Protest';
+    src: url('../public/ProtestStrike-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
