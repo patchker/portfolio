@@ -1,0 +1,40 @@
+.expand {
+    transform: translateX(10px);
+    transition: transform 0.2s ease-in-out;
+    width: 85% !important;
+}
+
+.mycollapse {
+    transform: translateX(0); /* lub inny efekt zwijania, który chcesz osiągnąć */
+    transition: transform 0.2s ease-in-out;
+}
+.transition-transform {
+    transition: transform 0.5s ease-in-out;
+}
+
+@keyframes slideInDetails {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+@keyframes slideOutDetails {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+
+.details-animation {
+    animation: slideInDetails 0.2s ease-in-out forwards;
+}
+.hide-details-animation {
+    animation: slideOutDetails 0.2s ease-in-out forwards;
+}
+
+

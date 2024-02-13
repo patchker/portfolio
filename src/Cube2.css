@@ -7,8 +7,7 @@
 }
 .cube3 {
 
-    background: url("postac4.webp") no-repeat center center; /* Skrócona notacja */
-    background-size: 40%;
+    background: url("postac4.webp") no-repeat center center;
     width: 50%;
     height: 500px;
 
@@ -43,8 +42,15 @@
     mask-image: linear-gradient(to top, transparent, black 30px);
 }
 .custom-gradient {
-    background-image: linear-gradient(to bottom, black, transparent 20%), linear-gradient(to right, black, #2563eb 10%);
+    background-image: linear-gradient(to bottom, black, transparent 20%),linear-gradient(to top, black, transparent 20%),  linear-gradient(to right, black, #2563eb 10%);
 
 }
 .custom-gradient2 {
 }
+.iemgie
+{
+    filter: drop-shadow(10px 10px 10px rgba(37, 99, 235, 0.5));
+
+
+}
+

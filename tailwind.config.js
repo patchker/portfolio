@@ -19,10 +19,20 @@ export default {
           {
             'custom-gray': '#111011',
 
-          }
-
+          },
+      backgroundSize: {
+        'auto': 'auto',
+        'cover': 'cover',
+        'contain': 'contain',
+        '50%': '50%',
+        '16': '4rem',
+      },
+    },
+  },
+  variants: {
+    extend: {
+      backgroundSize: ['responsive'], // Włącza responsywne warianty dla backgroundSize
     },
   },
   plugins: [],
 }
-

@@ -35,12 +35,12 @@ function Model({ modelPath, onLoaded }) {
             // Końcowa rotacja
             await next({
                 position: [0, 0, 0],
-                rotation: [0.1, Math.PI*2-0.8, 0],
+                rotation: [0.1, Math.PI*2-0.2, 0],
                 config: { mass: 1, tension: 190, friction: 25 },
                 onRest: () => {
                     setAnimationComplete(true);
                     // Zaktualizuj końcową rotację modelu
-                    setFinalRotation([0.1, Math.PI*2-0.8, 0]);
+                    setFinalRotation([0.1, Math.PI*2-0.2, 0]);
 
                 }
             });

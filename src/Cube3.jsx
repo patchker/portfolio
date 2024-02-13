@@ -9,7 +9,7 @@ function Cube3() {
 
 
     return (
-        <div className="cube3 m-auto md:w-[50%] bg-black flex justify-center items-center text-xs">
+        <div className="cube3 bg-contain md: m-auto md:w-[50%] bg-black flex justify-center items-center text-xs">
         </div>
     );
 }
