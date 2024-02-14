@@ -1,7 +1,6 @@
 .expand {
-    transform: translateX(10px);
+    transform: translateX(-40px);
     transition: transform 0.2s ease-in-out;
-    width: 85% !important;
 }
 
 .mycollapse {

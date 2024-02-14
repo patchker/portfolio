@@ -1,10 +1,8 @@
 import {useEffect, useState} from 'react'
-import Animation from "./Cube1"
-import Cube3 from "./Cube3";
-import Cube4 from "./Cube4";
-import Footer from "./Footer.jsx";
-import Navbar from "./Navbar";
-import FadeInComponent from "./FadeInComponent";
+import Animation from "./components/Cube1.jsx"
+import Cube3 from "./components/Cube3.jsx";
+import Cube4 from "./components/Cube4.jsx";
+import Footer from "../../shared/Footer.jsx";
 import {useNavigate} from "react-router-dom";
 function Home() {
     const navigate = useNavigate();

@@ -2,7 +2,7 @@ import React, {useState, Suspense, useEffect, useRef} from 'react';
 import {Canvas, useFrame} from '@react-three/fiber';
 import { OrbitControls, useGLTF, Environment, Loader } from '@react-three/drei';
 import { useSpring, a } from '@react-spring/three';
-import BackgroundPlane from './BackgroundPlane'
+import BackgroundPlane from './BackgroundPlane.jsx'
 
 function Model({ modelPath, onLoaded }) {
     const { scene } = useGLTF(modelPath);
@@ -145,7 +145,7 @@ export default function Animation() {
 
     return (
         <>
-            <div className={`w-full hidden lg:block element relative h-full overflow-hidden bg-custom-gray`}>
+            <div className={`w-full hidden lg:block element relative h-full overflow-hidden bg-black`}>
                 <div className={` h-full transition-opacity duration-500 `}>
                     <Scene modelPath="v73.glb" />
                 </div>

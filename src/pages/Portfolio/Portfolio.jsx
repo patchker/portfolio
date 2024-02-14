@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {supabase} from './supabaseClient.js';
-import './Portfolio.css'
-import Navbar from "./Navbar.jsx";
+import {supabase} from '../../config/supabaseClient.js';
+import '../../css/Portfolio.css'
+import Navbar from "../../shared/Navbar.jsx";
 import {FaGithub, FaExternalLinkAlt} from "react-icons/fa";
 import {useNavigate} from "react-router-dom";
-import Footer from "./Footer";
+import Footer from "../../shared/Footer.jsx";
 import { HiCursorClick } from "react-icons/hi";
 import { SiVitess } from "react-icons/si";
 import { SiTailwindcss } from "react-icons/si";
@@ -48,7 +48,9 @@ function App() {
     };
 
     const handleTileClick = (id) => {
-        const isSelected = selectedTile === id;
+        if (window.innerWidth >= 1024) {
+
+            const isSelected = selectedTile === id;
         if (isSelected) {
             // Zanim ustawisz SelectedTile na null, rozpocznij animację znikania
             setIsDetailVisible(false); // Rozpoczyna animację znikania
@@ -56,7 +58,7 @@ function App() {
         } else {
             setSelectedTile(id); // Pokazuje szczegóły
             setIsDetailVisible(true); // Natychmiastowo, ponieważ nie potrzebujemy opóźnienia do pokazania
-        }
+        }}
     };
     function technologiesFormat(rawTechnologiesString) {
         // Przykład mapowania technologii na ikony jako komponenty React
@@ -123,9 +125,34 @@ function App() {
                                                     <p>{row.technologies ? technologiesFormat(row.technologies) : 'Unknown'}</p>
                                                 </div>
                                             </div>
-                                            <p className="text-gray-300 mt-5 lg:mt-2">{row.description}</p>
+                                            <p className="text-gray-300 mt-5 lg:mt-2 mb-5">{row.description}</p>
+
+
+
+                                            <div className="flex lg:hidden flex-row justify-center items-center h-full mt-2 mb-5  border-4 rounded border-blue-600">
+                                                <button
+                                                    className="flex-1 bg-black w-[50%] font-bold text-white"
+                                                    onClick={() => {
+                                                        window.open('https://github.com/patchker/'+row.git_link, '_blank');
+                                                    }}
+                                                ><FaGithub className={`m-auto text-3xl mb-2`}/> Github
+                                                </button>
+                                                <div className="flex-1  w-[50%] flex flex-col justify-center">
+                                                    <button
+                                                        className="w-full h-full font-bold  bg-blue-600"
+                                                        onClick={() => {
+                                                            navigate("../"+row.site_link)
+                                                        }}
+                                                    ><FaExternalLinkAlt className={`m-auto text-3xl mb-2`}
+
+                                                    />
+                                                        Go to the website
+
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <p className="text-gray-400 lg:absolute lg:bottom-2 lg:left-2">{new Date(row.created_at).toLocaleDateString()}</p>
+                                        <p className="text-gray-400 absolute bottom-2 left-2">{new Date(row.created_at).toLocaleDateString()}</p>
 
                                         {/* Kontener na zawartość dla dużych ekranów */}
                                         <div className="hidden lg:flex lg:flex-col lg:flex-1 lg:space-y-0">
@@ -138,7 +165,7 @@ function App() {
                                         </div>
 
                                         {/* CTA, bez zmian */}
-                                        <p className="text-gray-300 flex items-center justify-end space-x-2 lg:absolute lg:bottom-2 lg:right-0 lg:mt-2 lg:px-3 lg:py-1 lg:rounded">
+                                        <p className=" hidden lg:flex text-gray-300 items-center justify-end space-x-2 lg:absolute lg:bottom-2 lg:right-0 lg:mt-2 lg:px-3 lg:py-1 lg:rounded">
                                             <HiCursorClick className="text-2xl"/>
                                             <span>Click on a tile for details</span>
                                         </p>
@@ -153,17 +180,18 @@ function App() {
 
                                             <div className="flex flex-col justify-center items-center h-full">
                                                 <button
-                                                    className="flex-1 bg-black h-full font-bold w-full text-white rounded-tr-xl  "
+                                                    className="flex-1 bg-black h-full font-bold w-full text-white  "
                                                     onClick={() => {
-                                                        navigate("google.com")
+                                                        window.open('https://github.com/patchker/'+row.git_link, '_blank');
+
                                                     }}
                                                 ><FaGithub className={`m-auto text-3xl mb-2`}/> Github
                                                 </button>
                                                 <div className="flex-1 flex flex-col justify-center">
                                                     <button
-                                                        className="w-full h-full font-bold  bg-blue-600 rounded-br-xl"
+                                                        className="w-full h-full font-bold  bg-blue-500"
                                                         onClick={() => {
-                                                            navigate("google.com")
+                                                            navigate("../"+row.site_link)
                                                         }}
                                                     ><FaExternalLinkAlt className={`m-auto text-3xl mb-2`}
 
@@ -180,7 +208,7 @@ function App() {
                             ))}
                         </div>
                     </div>
-                ) : <div>
+                ) : <div className={`flex justify-center items-center mt-32`}>
 
                     <img src="./loading2.gif" width="150px"/>
                 </div>}
