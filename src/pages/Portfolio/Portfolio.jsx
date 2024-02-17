@@ -128,28 +128,42 @@ function App() {
                                             <p className="text-gray-300 mt-5 lg:mt-2 mb-5">{row.description}</p>
 
 
-
-                                            <div className="flex lg:hidden flex-row justify-center items-center h-full mt-2 mb-5  border-4 rounded border-blue-600">
+                                            <div className={`flex flex-row justify-center items-center`}>
+                                            <div className="flex lg:hidden flex-col w-full md:w-[60%] justify-center items-center h-full mt-2 mb-5  border-4 rounded border-blue-600">
                                                 <button
-                                                    className="flex-1 bg-black w-[50%] font-bold text-white"
-                                                    onClick={() => {
+                                                    className="flex-1 bg-black w-full font-bold text-white"
+                                                    onClick={(event) => {
+                                                        event.stopPropagation();
+
                                                         window.open('https://github.com/patchker/'+row.git_link, '_blank');
                                                     }}
                                                 ><FaGithub className={`m-auto text-3xl mb-2`}/> Github
                                                 </button>
-                                                <div className="flex-1  w-[50%] flex flex-col justify-center">
-                                                    <button
-                                                        className="w-full h-full font-bold  bg-blue-600"
-                                                        onClick={() => {
-                                                            navigate("../"+row.site_link)
-                                                        }}
-                                                    ><FaExternalLinkAlt className={`m-auto text-3xl mb-2`}
+                                                <div className="flex-1 w-full flex flex-col justify-center bg-red-400">
+                                                    {row.site_link ? (
+                                                        <button
+                                                            className="w-full h-full font-bold bg-blue-600"
+                                                            onClick={(event) => {
+                                                                event.stopPropagation();
+                                                                window.open('http://192.168.1.114/works/' + row.site_link+'/', '_blank');
+                                                            }}
+                                                        >
+                                                            <FaExternalLinkAlt className="m-auto text-3xl mb-2"/>
+                                                            Go to the website
+                                                        </button>
+                                                    ) : (
 
-                                                    />
-                                                        Go to the website
-
-                                                    </button>
+                                                        <div
+                                                            className="w-full h-full  min-h-[60px] bg-gray-600 text-gray-800 flex justify-center items-center text-center"
+                                                            onClick={(event) => {
+                                                                event.stopPropagation()
+                                                            }}
+                                                        >
+                                                            <span className={`flex h-full`}>This is the page</span>
+                                                        </div>
+                                                    )}
                                                 </div>
+                                            </div>
                                             </div>
                                         </div>
                                         <p className="text-gray-400 absolute bottom-2 left-2">{new Date(row.created_at).toLocaleDateString()}</p>
@@ -181,25 +195,36 @@ function App() {
                                             <div className="flex flex-col justify-center items-center h-full">
                                                 <button
                                                     className="flex-1 bg-black h-full font-bold w-full text-white  "
-                                                    onClick={() => {
-                                                        window.open('https://github.com/patchker/'+row.git_link, '_blank');
+                                                    onClick={(event) => {
+                                                        event.stopPropagation();
+                                                        window.open('https://github.com/patchker/' + row.git_link, '_blank');
 
                                                     }}
                                                 ><FaGithub className={`m-auto text-3xl mb-2`}/> Github
                                                 </button>
                                                 <div className="flex-1 flex flex-col justify-center">
-                                                    <button
-                                                        className="w-full h-full font-bold  bg-blue-500"
-                                                        onClick={() => {
-                                                            navigate("../"+row.site_link)
-                                                        }}
-                                                    ><FaExternalLinkAlt className={`m-auto text-3xl mb-2`}
+                                                    {row.site_link ? (
+                                                        <button
+                                                            className="w-full h-full font-bold bg-blue-600"
+                                                            onClick={(event) => {
+                                                                event.stopPropagation();
+                                                                window.open('http://192.168.1.114/works/' + row.site_link+'/', '_blank');
+                                                            }}
+                                                        >
+                                                            <FaExternalLinkAlt className="m-auto text-3xl mb-2"/>
+                                                            Go to the website
+                                                        </button>
+                                                    ) : (
 
-                                                    />
-                                                        Go to the website
-
-                                                    </button>
+                                                        <div
+                                                            className="w-full h-full bg-gray-600 text-gray-800 flex justify-center items-center text-center"
+                                                            onClick={(event)=>{event.stopPropagation()}}
+                                                        >
+                                                            <span className={`flex`}>This is the page</span>
+                                                        </div>
+                                                    )}
                                                 </div>
+
                                             </div>
 
                                         </div>
