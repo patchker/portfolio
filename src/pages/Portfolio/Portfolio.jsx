@@ -145,7 +145,7 @@ function App() {
                                                             className="w-full h-full font-bold bg-blue-600"
                                                             onClick={(event) => {
                                                                 event.stopPropagation();
-                                                                window.open('http://192.168.1.114/works/' + row.site_link+'/', '_blank');
+                                                                window.open(row.site_link, '_blank');
                                                             }}
                                                         >
                                                             <FaExternalLinkAlt className="m-auto text-3xl mb-2"/>
@@ -208,7 +208,7 @@ function App() {
                                                             className="w-full h-full font-bold bg-blue-600"
                                                             onClick={(event) => {
                                                                 event.stopPropagation();
-                                                                window.open('http://192.168.1.114/works/' + row.site_link+'/', '_blank');
+                                                                window.open( row.site_link, '_blank');
                                                             }}
                                                         >
                                                             <FaExternalLinkAlt className="m-auto text-3xl mb-2"/>
@@ -238,6 +238,20 @@ function App() {
                     <img src="./loading2.gif" width="150px"/>
                 </div>}
             </div>
+            <div className="flex flex-col justify-center items-center bg-black text-white pt-10 font-protest">
+                <div>And much much more. Visit my github profile to see all the apps.</div>
+                <div className="flex flex-row justify-center items-center">
+                    <button
+                        className="flex items-center justify-center bg-gray-600 h-15 mt-2 w-52  font-bold text-white rounded px-4 py-2"
+                        onClick={() => {
+                            window.open('https://github.com/patchker/', '_blank');
+                        }}
+                    >
+                        <FaGithub className="text-3xl mr-2"/> Patchker on Github
+                    </button>
+                </div>
+            </div>
+
             <Footer/>
         </div>
     );
