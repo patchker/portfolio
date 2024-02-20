@@ -1,10 +1,8 @@
-// components/Home.jsx
 import React, {useEffect, useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import "../../../css/Cube2.css"
 
 
-// W komponencie JSX
 function Cube3() {
 
 

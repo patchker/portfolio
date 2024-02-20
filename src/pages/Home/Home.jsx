@@ -4,6 +4,7 @@ import Cube3 from "./components/Cube3.jsx";
 import Cube4 from "./components/Cube4.jsx";
 import Footer from "../../shared/Footer.jsx";
 import {useNavigate} from "react-router-dom";
+
 function Home() {
     const navigate = useNavigate();
 
@@ -15,10 +16,15 @@ function Home() {
                     <h1 className={`font-masque text-5xl md:text-6xl lg:text-6xl 2xl:text-8xl text-blue-600`}>Patchker</h1>
                     <h1>FRONTEND + BACKEND DEVELOPER</h1>
                     <h1 className={`mt-5`}>I possess a deep passion for creating engaging and interactive websites.</h1>
-                    <h1>My expertise extends from frontend development to specializing in the construction of robust backend servers.</h1>
+                    <h1>My expertise extends from frontend development to specializing in the construction of robust
+                        backend servers.</h1>
                     <div className={`flex flex-col items-center justify-center`}>
                         <div className={`mt-5`}>Here you can check my works.</div>
-                        <button onClick={()=>{navigate('/portfolio')}} className={`px-10 py-3 bg-blue-600 rounded-xl  mt-2 text-2xl hover:bg-blue-700`}>Portfolio</button>
+                        <button onClick={() => {
+                            navigate('/portfolio')
+                        }}
+                                className={`px-16 py-3 bg-blue-600 text-black rounded  mt-2 text-2xl hover:bg-blue-700`}>Portfolio
+                        </button>
                     </div>
                 </div>
                 <Animation className="test shadow-2xl"/>

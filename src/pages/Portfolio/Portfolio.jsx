@@ -5,11 +5,15 @@ import Navbar from "../../shared/Navbar.jsx";
 import {FaGithub, FaExternalLinkAlt} from "react-icons/fa";
 import {useNavigate} from "react-router-dom";
 import Footer from "../../shared/Footer.jsx";
-import { HiCursorClick } from "react-icons/hi";
-import { SiVitess } from "react-icons/si";
-import { SiTailwindcss } from "react-icons/si";
-import { SiReact } from "react-icons/si";
-import { SiDjango } from "react-icons/si";
+import {HiCursorClick} from "react-icons/hi";
+import {SiVitess} from "react-icons/si";
+import {SiTailwindcss} from "react-icons/si";
+import {SiReact} from "react-icons/si";
+import {SiDjango} from "react-icons/si";
+import {SiFastapi} from "react-icons/si";
+import {SiPhp} from "react-icons/si";
+import {FaQuestion} from "react-icons/fa";
+import {FaNodeJs} from "react-icons/fa";
 
 function App() {
     const [data, setData] = useState([]);
@@ -42,6 +46,7 @@ function App() {
         0: 'Backend',
         1: 'Frontend',
         2: 'Backend + Frontend',
+        3: 'Frontend + DB',
     };
     const toggleTile = (tileId) => {
         setSelectedTile(selectedTile === tileId ? null : tileId);
@@ -51,30 +56,30 @@ function App() {
         if (window.innerWidth >= 1024) {
 
             const isSelected = selectedTile === id;
-        if (isSelected) {
-            // Zanim ustawisz SelectedTile na null, rozpocznij animację znikania
-            setIsDetailVisible(false); // Rozpoczyna animację znikania
-            setTimeout(() => setSelectedTile(null), 200); // Czekaj na zakończenie animacji
-        } else {
-            setSelectedTile(id); // Pokazuje szczegóły
-            setIsDetailVisible(true); // Natychmiastowo, ponieważ nie potrzebujemy opóźnienia do pokazania
-        }}
+            if (isSelected) {
+                setIsDetailVisible(false);
+                setTimeout(() => setSelectedTile(null), 200);
+            } else {
+                setSelectedTile(id);
+                setIsDetailVisible(true);
+            }
+        }
     };
+
     function technologiesFormat(rawTechnologiesString) {
-        // Przykład mapowania technologii na ikony jako komponenty React
         const technologyIcons = {
-            'vite': <SiVitess />,
-            'react': <SiReact/>, // Użycie stringa emoji, ponieważ jest to zwykły tekst
-            'tailwind': <SiTailwindcss/>, // Użycie stringa emoji
-            'django': <SiDjango/>, // Użycie stringa emoji
-            // Domyślna ikona, jeśli nie znajdzie dopasowania
-            'default': '❓'
+            'Vite': <SiVitess/>,
+            'React': <SiReact/>,
+            'Tailwind': <SiTailwindcss/>,
+            'Django': <SiDjango/>,
+            'FastAPI': <SiFastapi/>,
+            'PHP': <SiPhp/>,
+            'Node.js': <FaNodeJs/>,
+            'default': <FaQuestion/>,
         };
 
-        // Przekształcenie stringa technologii na tablicę
         const rawTechnologiesArray = rawTechnologiesString.split(',');
 
-        // Przekształcenie każdej technologii do komponentu React
         const formattedTechnologies = rawTechnologiesArray.map(technology => (
             <li className="flex" key={technology}>
                 <span className={`mt-1`}>{technologyIcons[technology] || technologyIcons['default']}</span>
@@ -82,7 +87,6 @@ function App() {
             </li>
         ));
 
-        // Bezpośrednie zwracanie elementów React
         return <ul className="list-decimal">{formattedTechnologies}</ul>;
     }
 
@@ -106,18 +110,17 @@ function App() {
                             {data.map((row) => (
                                 <div
                                     key={row.id}
-                                    className={`relative cursor-pointer shadow-blue-600 shadow-2xl  w-[100%]  sm:w-full ${
+                                    className={`relative  cursor-pointer shadow-blue-600 shadow-2xl  w-[100%]  sm:w-full ${
                                         selectedTile === row.id ? "expand" : "mycollapse"
                                     }`}
                                 >
                                     <div
-                                        className="relative border-4 hover:scale-[102%] border-blue-500 bg-custom-gray rounded-lg p-4 shadow-lg overflow-hidden transition-transform duration-300 ease-in-out z-20 lg:flex lg:flex-row lg:items-start lg:space-x-4"
+                                        className="relative border-4 neon-effect hover:scale-[102%] border-blue-500 bg-custom-gray rounded-lg p-4 shadow-lg overflow-hidden transition-transform duration-300 ease-in-out z-20 lg:flex lg:flex-row lg:items-start lg:space-x-4"
                                         onClick={() => handleTileClick(row.id)}
                                     >
-                                        {/* Tytuł, backOrFront, technologies na małych ekranach */}
-                                        <div className="flex-1">
+                                        <div className="flex-1 ">
                                             <h2 className="font-bold text-5xl text-blue-600 font-masque">{row.name}</h2>
-                                            {/* Wyświetl backOrFront i technologies bezpośrednio po tytule na małych ekranach */}
+
                                             <div className="lg:hidden space-y-4 mt-5">
                                                 <p className="text-gray-500 text-3xl">{backOrFrontLabel[row.backOrFront] || 'Nieznany'}</p>
                                                 <div className="text-gray-500">
@@ -125,52 +128,52 @@ function App() {
                                                     <p>{row.technologies ? technologiesFormat(row.technologies) : 'Unknown'}</p>
                                                 </div>
                                             </div>
-                                            <p className="text-gray-300 mt-5 lg:mt-2 mb-5">{row.description}</p>
+                                            <p className="text-gray-300 mt-5 lg:mt-2 mb-5"
+                                               dangerouslySetInnerHTML={{__html: row.description}}></p>
 
 
                                             <div className={`flex flex-row justify-center items-center`}>
-                                            <div className="flex lg:hidden flex-col w-full md:w-[60%] justify-center items-center h-full mt-2 mb-5  border-4 rounded border-blue-600">
-                                                <button
-                                                    className="flex-1 bg-black w-full font-bold text-white"
-                                                    onClick={(event) => {
-                                                        event.stopPropagation();
+                                                <div
+                                                    className="flex lg:hidden flex-col w-full md:w-[60%] justify-center items-center h-full mt-2 mb-5  border-4 rounded border-blue-600">
+                                                    <button
+                                                        className="flex-1 bg-black w-full font-bold text-white"
+                                                        onClick={(event) => {
+                                                            event.stopPropagation();
 
-                                                        window.open('https://github.com/patchker/'+row.git_link, '_blank');
-                                                    }}
-                                                ><FaGithub className={`m-auto text-3xl mb-2`}/> Github
-                                                </button>
-                                                <div className="flex-1 w-full flex flex-col justify-center bg-red-400">
-                                                    {row.site_link ? (
-                                                        <button
-                                                            className="w-full h-full font-bold bg-blue-600"
-                                                            onClick={(event) => {
-                                                                event.stopPropagation();
-                                                                window.open(row.site_link, '_blank');
-                                                            }}
-                                                        >
-                                                            <FaExternalLinkAlt className="m-auto text-3xl mb-2"/>
-                                                            Go to the website
-                                                        </button>
-                                                    ) : (
+                                                            window.open('https://github.com/patchker/' + row.git_link, '_blank');
+                                                        }}
+                                                    ><FaGithub className={`m-auto text-3xl mb-2`}/> Github
+                                                    </button>
+                                                    <div
+                                                        className="flex-1 w-full flex flex-col justify-center bg-red-400">
+                                                        {row.site_link ? (
+                                                            <button
+                                                                className="w-full h-full font-bold bg-blue-600"
+                                                                onClick={(event) => {
+                                                                    event.stopPropagation();
+                                                                    window.open(row.site_link, '_blank');
+                                                                }}
+                                                            >
+                                                                <FaExternalLinkAlt className="m-auto text-3xl mb-2"/>
+                                                                Go to the website
+                                                            </button>
+                                                        ) : (
 
-                                                        <div
-                                                            className="w-full h-full  min-h-[60px] bg-gray-600 text-gray-800 flex justify-center items-center text-center"
-                                                            onClick={(event) => {
-                                                                event.stopPropagation()
-                                                            }}
-                                                        >
-                                                            <span className={`flex h-full`}>This is the page</span>
-                                                        </div>
-                                                    )}
+                                                            <div
+                                                                className="w-full h-full  min-h-[60px] bg-gray-600 text-gray-800 flex justify-center items-center text-center"
+                                                                onClick={(event) => {
+                                                                    event.stopPropagation()
+                                                                }}
+                                                            >
+                                                                <span className={`flex h-full`}>This is the page</span>
+                                                            </div>
+                                                        )}
+                                                    </div>
                                                 </div>
                                             </div>
-                                            </div>
                                         </div>
-                                        <p className="text-gray-400 absolute bottom-2 left-2">{new Date(row.created_at).toLocaleDateString()}</p>
 
-                                        {/* Kontener na zawartość dla dużych ekranów */}
                                         <div className="hidden lg:flex lg:flex-col lg:flex-1 lg:space-y-0">
-                                            {/* Ukryj backOrFront i technologies na małych ekranach, wyświetl na dużych */}
                                             <p className="text-gray-500 text-3xl absolute top-2 right-5">{backOrFrontLabel[row.backOrFront] || 'Nieznany'}</p>
                                             <div className="text-gray-500 absolute top-20 right-5 w-52">
                                                 <p className="text-3xl">Technologies</p>
@@ -178,7 +181,6 @@ function App() {
                                             </div>
                                         </div>
 
-                                        {/* CTA, bez zmian */}
                                         <p className=" hidden lg:flex text-gray-300 items-center justify-end space-x-2 lg:absolute lg:bottom-2 lg:right-0 lg:mt-2 lg:px-3 lg:py-1 lg:rounded">
                                             <HiCursorClick className="text-2xl"/>
                                             <span>Click on a tile for details</span>
@@ -208,7 +210,7 @@ function App() {
                                                             className="w-full h-full font-bold bg-blue-600"
                                                             onClick={(event) => {
                                                                 event.stopPropagation();
-                                                                window.open( row.site_link, '_blank');
+                                                                window.open(row.site_link, '_blank');
                                                             }}
                                                         >
                                                             <FaExternalLinkAlt className="m-auto text-3xl mb-2"/>
@@ -218,7 +220,9 @@ function App() {
 
                                                         <div
                                                             className="w-full h-full bg-gray-600 text-gray-800 flex justify-center items-center text-center"
-                                                            onClick={(event)=>{event.stopPropagation()}}
+                                                            onClick={(event) => {
+                                                                event.stopPropagation()
+                                                            }}
                                                         >
                                                             <span className={`flex`}>This is the page</span>
                                                         </div>
@@ -242,12 +246,13 @@ function App() {
                 <div>And much much more. Visit my github profile to see all the apps.</div>
                 <div className="flex flex-row justify-center items-center">
                     <button
-                        className="flex items-center justify-center bg-gray-600 h-15 mt-2 w-52  font-bold text-white rounded px-4 py-2"
+                        className="flex items-center justify-center bg-blue-600 hover:bg-blue-700 h-15 mt-2 w-60  font-bold  text-black rounded px-4 py-2"
                         onClick={() => {
                             window.open('https://github.com/patchker/', '_blank');
                         }}
                     >
-                        <FaGithub className="text-3xl mr-2"/> Patchker on Github
+                        <FaGithub className="text-3xl mr-2"/> <span className={`font-masque mr-1`}>Patchker</span> on
+                        Github
                     </button>
                 </div>
             </div>

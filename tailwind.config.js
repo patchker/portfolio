@@ -3,7 +3,6 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,jsx,ts,tsx}",
-    // Możesz dodać więcej ścieżek, jeśli twoje pliki znajdują się również w innych katalogach
   ],
   theme: {
     extend: {
@@ -18,6 +17,8 @@ export default {
       colors:
           {
             'custom-gray': '#111011',
+            'github-bb': '#6e5494',
+            'github-ms': '#333',
 
           },
       backgroundSize: {
@@ -31,7 +32,7 @@ export default {
   },
   variants: {
     extend: {
-      backgroundSize: ['responsive'], // Włącza responsywne warianty dla backgroundSize
+      backgroundSize: ['responsive'],
     },
   },
   plugins: [],
