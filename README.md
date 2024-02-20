@@ -6,6 +6,8 @@
 <h3>Features</h3>
 <b>Interactive UI</b>: Leveraging React, the application offers a dynamic and interactive user experience, with smooth navigation and real-time updates.
 
+<b>Three.js</b>: At the heart of the portfolio's homepage is an immersive 3D model displayed using Three.js, a powerful JavaScript library and API for creating and displaying animated 3D computer graphics in a web browser.
+
 <b>Responsive Design</b>: Tailwind CSS ensures that the portfolio is fully responsive and looks great on all devices, from desktops to mobile phones.
 
 <b>Fast Performance</b>: Vite offers lightning-fast build times and hot module replacement, making the development experience smooth and the application performance optimized.
